@@ -27,3 +27,8 @@ Copy các thư mục này vào `~/.gemini/config/skills/` (đối với Antigrav
 
 ### 4. Custom User Skills
 - **`shortcut-iphone-skill`**: Kỹ năng chuyên sâu để thao tác, tạo và tùy chỉnh Apple Shortcuts (Phím tắt iPhone) trực tiếp thông qua CLI và cấu hình JSON/PList.
+
+### 5. Design & UI/UX (UI UX Pro Max)
+- **`ui-ux-pro-max`**: Hệ thống AI Design thông minh với 192 luật suy luận UI/UX, 79 style và hỗ trợ 22 frameworks (React, Tailwind, Flutter, WPF...).
+- **`design-system`**: Quản lý Design Tokens, màu sắc, font chữ và thiết lập tiêu chuẩn UI cho toàn bộ dự án.
+- **Các module đi kèm**: `brand`, `ui-styling`, `banner-design`, `slides`.
