@@ -1,0 +1,97 @@
+{
+  "WFWorkflowName": "Mau goi API",
+  "WFWorkflowIcon": {
+    "WFWorkflowIconGlyphNumber": 59471,
+    "WFWorkflowIconStartColor": 4282601983
+  },
+  "WFWorkflowInputContentItemClasses": [],
+  "WFWorkflowTypes": [],
+  "WFWorkflowActions": [
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.comment",
+      "WFWorkflowActionParameters": {
+        "UUID": "89F7DDC9-29AF-47ED-A304-12EF9D8E35CA",
+        "WFCommentActionText": "Mau GET tu API. Doi URL + doc ket qua. Moi nhanh mang phai co fallback offline."
+      }
+    },
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.url",
+      "WFWorkflowActionParameters": {
+        "UUID": "E3AC4A7A-1960-4AAC-9226-1227A4E6CB76",
+        "WFURLActionURL": "https://api.github.com/zen"
+      }
+    },
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.downloadurl",
+      "WFWorkflowActionParameters": {
+        "UUID": "CBB5798C-E20C-48C2-8E70-1D3614908983",
+        "CustomOutputName": "ket_qua",
+        "WFHTTPMethod": "GET",
+        "WFURL": {
+          "Value": {
+            "Type": "ActionOutput",
+            "OutputName": "URL",
+            "OutputUUID": "E3AC4A7A-1960-4AAC-9226-1227A4E6CB76"
+          },
+          "WFSerializationType": "WFTextTokenAttachment"
+        }
+      }
+    },
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.conditional",
+      "WFWorkflowActionParameters": {
+        "UUID": "8190C3B3-A5D1-4180-A71D-F1F536753065",
+        "GroupingIdentifier": "A0839603-5419-4C5C-ADA3-B0738CF0E04C",
+        "WFControlFlowMode": 0,
+        "WFCondition": 100,
+        "WFInput": {
+          "Value": {
+            "Type": "ActionOutput",
+            "OutputName": "ket_qua",
+            "OutputUUID": "CBB5798C-E20C-48C2-8E70-1D3614908983"
+          },
+          "WFSerializationType": "WFTextTokenAttachment"
+        }
+      }
+    },
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.showresult",
+      "WFWorkflowActionParameters": {
+        "UUID": "C048E3B5-F6D2-437A-9840-D01435BD40A6",
+        "Text": {
+          "Value": {
+            "Type": "ActionOutput",
+            "OutputName": "ket_qua",
+            "OutputUUID": "CBB5798C-E20C-48C2-8E70-1D3614908983"
+          },
+          "WFSerializationType": "WFTextTokenAttachment"
+        }
+      }
+    },
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.conditional",
+      "WFWorkflowActionParameters": {
+        "UUID": "8280FC14-C170-4AA0-BED1-0918E59AEE4E",
+        "GroupingIdentifier": "A0839603-5419-4C5C-ADA3-B0738CF0E04C",
+        "WFControlFlowMode": 1
+      }
+    },
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.alert",
+      "WFWorkflowActionParameters": {
+        "UUID": "18BAB048-B032-4A22-9A59-9E2A2DADC87A",
+        "WFAlertActionTitle": "Khong co mang",
+        "WFAlertActionMessage": "Kiem tra ket noi roi chay lai",
+        "WFAlertActionCancelButtonShown": false
+      }
+    },
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.conditional",
+      "WFWorkflowActionParameters": {
+        "UUID": "A9D09443-D498-48CA-9B1A-FCD88360EF06",
+        "GroupingIdentifier": "A0839603-5419-4C5C-ADA3-B0738CF0E04C",
+        "WFControlFlowMode": 2
+      }
+    }
+  ]
+}

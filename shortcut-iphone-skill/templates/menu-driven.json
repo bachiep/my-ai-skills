@@ -1,0 +1,87 @@
+{
+  "WFWorkflowName": "Mau menu",
+  "WFWorkflowIcon": {
+    "WFWorkflowIconGlyphNumber": 59495,
+    "WFWorkflowIconStartColor": 4282601983
+  },
+  "WFWorkflowInputContentItemClasses": [],
+  "WFWorkflowTypes": [],
+  "WFWorkflowActions": [
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.comment",
+      "WFWorkflowActionParameters": {
+        "UUID": "6EF07C58-12EE-44ED-9955-66249FCAB775",
+        "WFCommentActionText": "Mau menu: them muc = them dong trong WFMenuItems + them nhanh ben duoi."
+      }
+    },
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.choosefrommenu",
+      "WFWorkflowActionParameters": {
+        "UUID": "CF78DCA8-A552-44A4-AFCD-FD5740E22EC8",
+        "GroupingIdentifier": "CDC687C0-89D4-44DD-824C-430D7CBF41C8",
+        "WFControlFlowMode": 0,
+        "WFMenuPrompt": "Chon tac vu",
+        "WFMenuItems": [
+          "Muc 1",
+          "Muc 2"
+        ]
+      }
+    },
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.choosefrommenu",
+      "WFWorkflowActionParameters": {
+        "UUID": "FFBC1ADA-506D-4114-88A7-ACC6F1981C4F",
+        "GroupingIdentifier": "CDC687C0-89D4-44DD-824C-430D7CBF41C8",
+        "WFControlFlowMode": 1,
+        "WFMenuItemTitle": "Muc 1"
+      }
+    },
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.vibrate",
+      "WFWorkflowActionParameters": {
+        "UUID": "5F30A0DC-8E51-4FF7-AC9E-BC27A7B1223B"
+      }
+    },
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.alert",
+      "WFWorkflowActionParameters": {
+        "UUID": "D7249DD8-F86B-4A5E-B1F8-B2E10351DA2F",
+        "WFAlertActionTitle": "Muc 1",
+        "WFAlertActionMessage": "Thay action nay bang logic cua ban",
+        "WFAlertActionCancelButtonShown": false
+      }
+    },
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.choosefrommenu",
+      "WFWorkflowActionParameters": {
+        "UUID": "F775D5B7-0647-427F-A253-F1E59BB2B8FE",
+        "GroupingIdentifier": "CDC687C0-89D4-44DD-824C-430D7CBF41C8",
+        "WFControlFlowMode": 1,
+        "WFMenuItemTitle": "Muc 2"
+      }
+    },
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.vibrate",
+      "WFWorkflowActionParameters": {
+        "UUID": "D2AD3199-68B5-49DA-BE44-42B3C413A693"
+      }
+    },
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.alert",
+      "WFWorkflowActionParameters": {
+        "UUID": "68F86D21-EDD1-4A07-BE02-CE081B20BC0E",
+        "WFAlertActionTitle": "Muc 2",
+        "WFAlertActionMessage": "Thay action nay bang logic cua ban",
+        "WFAlertActionCancelButtonShown": false
+      }
+    },
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.choosefrommenu",
+      "WFWorkflowActionParameters": {
+        "UUID": "10CC6886-1F00-46A8-ACC1-1756AF4112FC",
+        "GroupingIdentifier": "CDC687C0-89D4-44DD-824C-430D7CBF41C8",
+        "WFControlFlowMode": 2
+      }
+    }
+  ]
+}

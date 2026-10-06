@@ -1,0 +1,183 @@
+{
+  "WFWorkflowName": "Menu Nguon",
+  "WFWorkflowIcon": {
+    "WFWorkflowIconGlyphNumber": 59495,
+    "WFWorkflowIconStartColor": 4282601983
+  },
+  "WFWorkflowInputContentItemClasses": [],
+  "WFWorkflowTypes": [],
+  "WFWorkflowActions": [
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.comment",
+      "WFWorkflowActionParameters": {
+        "UUID": "AE55CC14-C588-476D-B2B9-358D40AB90CB",
+        "WFCommentActionText": "Menu Nguon v1.0 — vi du hoan chinh cua skill tao-phim-tat-iphone. Mo file nay de xem tung action."
+      }
+    },
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.dictionary",
+      "WFWorkflowActionParameters": {
+        "UUID": "B9BF0D2B-0E17-4AED-8302-C0E87AEEE458",
+        "WFItems": {
+          "Value": {
+            "WFDictionaryFieldValueItems": [
+              {
+                "WFKey": {
+                  "Value": {
+                    "string": "ten",
+                    "WFSerializationType": "WFTextTokenString"
+                  }
+                },
+                "WFItemType": 0,
+                "WFValue": {
+                  "Value": {
+                    "string": "Menu Nguon",
+                    "WFSerializationType": "WFTextTokenString"
+                  }
+                }
+              },
+              {
+                "WFKey": {
+                  "Value": {
+                    "string": "ver",
+                    "WFSerializationType": "WFTextTokenString"
+                  }
+                },
+                "WFItemType": 0,
+                "WFValue": {
+                  "Value": {
+                    "string": "1.0",
+                    "WFSerializationType": "WFTextTokenString"
+                  }
+                }
+              },
+              {
+                "WFKey": {
+                  "Value": {
+                    "string": "by",
+                    "WFSerializationType": "WFTextTokenString"
+                  }
+                },
+                "WFItemType": 0,
+                "WFValue": {
+                  "Value": {
+                    "string": "tao-phim-tat-iphone",
+                    "WFSerializationType": "WFTextTokenString"
+                  }
+                }
+              }
+            ]
+          },
+          "WFSerializationType": "WFDictionaryFieldValue"
+        }
+      }
+    },
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.choosefrommenu",
+      "WFWorkflowActionParameters": {
+        "UUID": "DDB7D6DC-9EFE-45F5-B027-270BAB158D9E",
+        "GroupingIdentifier": "C5EE53B1-ABF6-4319-9558-15EBA445C2A8",
+        "WFControlFlowMode": 0,
+        "WFMenuPrompt": "Chon thao tac nguon",
+        "WFMenuItems": [
+          "Khoa man hinh",
+          "Tat may",
+          "Khoi dong lai",
+          "Huy"
+        ]
+      }
+    },
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.choosefrommenu",
+      "WFWorkflowActionParameters": {
+        "UUID": "21B4771F-5F05-4191-A9AA-9B255E410F93",
+        "GroupingIdentifier": "C5EE53B1-ABF6-4319-9558-15EBA445C2A8",
+        "WFControlFlowMode": 1,
+        "WFMenuItemTitle": "Khoa man hinh"
+      }
+    },
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.vibrate",
+      "WFWorkflowActionParameters": {
+        "UUID": "958420C7-6599-42EF-9A5B-27F11068E6DB"
+      }
+    },
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.lockscreen",
+      "WFWorkflowActionParameters": {
+        "UUID": "DA0FE786-0FE9-4A86-A417-35E3F978BAD4"
+      }
+    },
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.choosefrommenu",
+      "WFWorkflowActionParameters": {
+        "UUID": "014A96C5-5667-4077-8C64-CF92CDFD975F",
+        "GroupingIdentifier": "C5EE53B1-ABF6-4319-9558-15EBA445C2A8",
+        "WFControlFlowMode": 1,
+        "WFMenuItemTitle": "Tat may"
+      }
+    },
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.vibrate",
+      "WFWorkflowActionParameters": {
+        "UUID": "709A44AC-0B88-488B-BC5A-7B3F9F6FA691"
+      }
+    },
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.reboot",
+      "WFWorkflowActionParameters": {
+        "UUID": "8636790C-B29D-4F3A-8C38-6ACFEF35E481"
+      }
+    },
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.choosefrommenu",
+      "WFWorkflowActionParameters": {
+        "UUID": "C6EC257A-024E-46AC-BE40-EEEC41E07ECB",
+        "GroupingIdentifier": "C5EE53B1-ABF6-4319-9558-15EBA445C2A8",
+        "WFControlFlowMode": 1,
+        "WFMenuItemTitle": "Khoi dong lai"
+      }
+    },
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.vibrate",
+      "WFWorkflowActionParameters": {
+        "UUID": "3AFDCD67-B811-4841-BF2C-22C73D7F00FB"
+      }
+    },
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.reboot",
+      "WFWorkflowActionParameters": {
+        "UUID": "4865C92B-2097-46FB-9D66-D1797EF93784"
+      }
+    },
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.choosefrommenu",
+      "WFWorkflowActionParameters": {
+        "UUID": "6BBCA6A6-B6B2-42A7-85AA-8D4010BAAF9E",
+        "GroupingIdentifier": "C5EE53B1-ABF6-4319-9558-15EBA445C2A8",
+        "WFControlFlowMode": 1,
+        "WFMenuItemTitle": "Huy"
+      }
+    },
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.vibrate",
+      "WFWorkflowActionParameters": {
+        "UUID": "EC42ED40-DCC2-4206-B649-B0A7EB31D716"
+      }
+    },
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.exit",
+      "WFWorkflowActionParameters": {
+        "UUID": "6C2E2142-028B-4986-B6D8-95CFEFB2D5E0"
+      }
+    },
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.choosefrommenu",
+      "WFWorkflowActionParameters": {
+        "UUID": "BFEA871C-97D5-45FC-B446-F72AAB79DA97",
+        "GroupingIdentifier": "C5EE53B1-ABF6-4319-9558-15EBA445C2A8",
+        "WFControlFlowMode": 2
+      }
+    }
+  ]
+}

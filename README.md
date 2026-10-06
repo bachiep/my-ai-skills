@@ -24,3 +24,6 @@ Kho lưu trữ này bao gồm các bộ quy tắc khắt khe nhất để đảm
 
 ## Hướng dẫn sử dụng
 Copy các thư mục này vào `~/.gemini/config/skills/` (đối với Antigravity) hoặc thư mục cấu hình tương ứng của Agent bạn đang sử dụng.
+
+### 4. Custom User Skills
+- **`shortcut-iphone-skill`**: Kỹ năng chuyên sâu để thao tác, tạo và tùy chỉnh Apple Shortcuts (Phím tắt iPhone) trực tiếp thông qua CLI và cấu hình JSON/PList.

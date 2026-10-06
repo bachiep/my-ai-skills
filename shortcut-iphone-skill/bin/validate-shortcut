@@ -1,0 +1,142 @@
+#!/usr/bin/env python3
+"""validate-shortcut: kiem tra file .shortcut theo hard rules cua skill.
+
+Su dung:
+    python3 bin/validate-shortcut <file.shortcut>
+
+Kiem tra:
+  1. File la plist hop le, co WFWorkflowActions
+  2. Moi action co UUID viet hoa, duy nhat
+  3. Moi OutputUUID (Magic Variable) tro den action ton tai, khong placeholder
+  4. Khoi If/Repeat/Menu: chung GroupingIdentifier, mode 0-1-2 can bang
+  5. Ma WFCondition nam trong bang chuan
+  6. Khong co duong dan cung kieu /Users/... trong tham so text
+
+Exit code: 0 = dat, 1 = co loi, 2 = file khong doc duoc.
+Chi dung stdlib.
+"""
+import plistlib
+import re
+import sys
+from pathlib import Path
+
+UUID_RE = re.compile(
+    r"^[0-9A-F]{8}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{12}$")
+PLACEHOLDER = "00000000-0000-0000-0000-000000000000"
+# Ma WFCondition chuan (xem references/control-flow.md)
+VALID_CONDITIONS = {0, 1, 2, 3, 4, 5, 8, 9, 99, 999, 100, 101, 1003}
+
+
+def find_refs(node, out):
+    if isinstance(node, dict):
+        if node.get("Type") == "ActionOutput" and "OutputUUID" in node:
+            out.append(node["OutputUUID"])
+        for v in node.values():
+            find_refs(v, out)
+    elif isinstance(node, list):
+        for v in node:
+            find_refs(v, out)
+    return out
+
+
+def find_hardcoded_paths(node, out):
+    if isinstance(node, str):
+        if re.search(r"/(Users|home)/[^/]+/", node):
+            out.append(node[:80])
+    elif isinstance(node, dict):
+        for v in node.values():
+            find_hardcoded_paths(v, out)
+    elif isinstance(node, list):
+        for v in node:
+            find_hardcoded_paths(v, out)
+    return out
+
+
+def validate(path):
+    errors, warnings = [], []
+    try:
+        with open(path, "rb") as f:
+            data = plistlib.loads(f.read())
+    except Exception as e:
+        return [f"khong doc duoc plist: {e}"], []
+    if not isinstance(data, dict) or "WFWorkflowActions" not in data:
+        return ["thieu WFWorkflowActions"], []
+    actions = data["WFWorkflowActions"]
+    if not actions:
+        errors.append("khong co action nao")
+
+    uuids = []
+    for i, a in enumerate(actions):
+        p = a.get("WFWorkflowActionParameters") or {}
+        u = p.get("UUID")
+        if not u:
+            errors.append(f"action {i} ({a.get('WFWorkflowActionIdentifier')}) thieu UUID")
+        elif not UUID_RE.match(u):
+            errors.append(f"action {i} UUID khong viet hoa/dung dinh dang: {u}")
+        else:
+            uuids.append(u)
+    if len(set(uuids)) != len(uuids):
+        errors.append("co UUID trung nhau")
+
+    uuid_set = set(uuids)
+    for i, a in enumerate(actions):
+        p = a.get("WFWorkflowActionParameters") or {}
+        for ref in find_refs(p, []):
+            if ref == PLACEHOLDER:
+                errors.append(f"action {i} con placeholder UUID 00000000")
+            elif ref not in uuid_set:
+                errors.append(f"action {i} tro den UUID khong ton tai: {ref[:8]}...")
+
+    # Control flow: gom theo GroupingIdentifier
+    groups = {}
+    for i, a in enumerate(actions):
+        p = a.get("WFWorkflowActionParameters") or {}
+        mode = p.get("WFControlFlowMode")
+        if mode is not None:
+            g = p.get("GroupingIdentifier")
+            if not g:
+                errors.append(f"action {i} co ControlFlowMode nhung thieu GroupingIdentifier")
+                continue
+            groups.setdefault(g, []).append((i, mode))
+    for g, items in groups.items():
+        modes = [m for _, m in items]
+        if modes[0] != 0:
+            errors.append(f"nhom {g[:8]} khong mo bang mode 0")
+        if modes[-1] != 2:
+            errors.append(f"nhom {g[:8]} khong dong bang mode 2")
+
+    for i, a in enumerate(actions):
+        p = a.get("WFWorkflowActionParameters") or {}
+        if "WFCondition" in p and p["WFCondition"] not in VALID_CONDITIONS:
+            errors.append(f"action {i} ma WFCondition la: {p['WFCondition']}")
+
+    for hit in find_hardcoded_paths(
+            [a.get("WFWorkflowActionParameters") for a in actions], []):
+        warnings.append(f"duong dan cung theo may: {hit}")
+
+    return errors, warnings
+
+
+def main():
+    if len(sys.argv) != 2:
+        print(__doc__.strip().splitlines()[1])
+        return 2
+    path = Path(sys.argv[1])
+    if not path.is_file():
+        print(f"khong tim thay file: {path}")
+        return 2
+    errors, warnings = validate(str(path))
+    for w in warnings:
+        print(f"CANH BAO: {w}")
+    if errors:
+        print(f"LOI ({len(errors)}):")
+        for e in errors:
+            print(f"  - {e}")
+        return 1
+    n = len(plistlib.loads(path.read_bytes())["WFWorkflowActions"])
+    print(f"DAT: {path.name} ({n} actions, UUID/lien ket/nhom dieu khien deu chuan)")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

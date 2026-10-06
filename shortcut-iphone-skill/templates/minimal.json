@@ -1,0 +1,25 @@
+{
+  "WFWorkflowName": "Mau toi thieu",
+  "WFWorkflowIcon": {
+    "WFWorkflowIconGlyphNumber": 59511,
+    "WFWorkflowIconStartColor": 4282601983
+  },
+  "WFWorkflowInputContentItemClasses": [],
+  "WFWorkflowTypes": [],
+  "WFWorkflowActions": [
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.comment",
+      "WFWorkflowActionParameters": {
+        "UUID": "ED743F41-77F5-4CF5-803F-E527C0E29236",
+        "WFCommentActionText": "Mau toi thieu: 1 action hien ket qua. Doi text thanh noi dung cua ban."
+      }
+    },
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.showresult",
+      "WFWorkflowActionParameters": {
+        "UUID": "FAD57C64-572E-4860-AA98-58476F9F0A69",
+        "Text": "Xin chao!"
+      }
+    }
+  ]
+}
